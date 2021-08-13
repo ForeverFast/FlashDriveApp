@@ -1,0 +1,338 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="clr-namespace:FlashDriveApp.Converters"
+                    xmlns:ext="clr-namespace:FlashDriveApp.Extentions"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:m="clr-namespace:FlashDriveApp.Models"
+                    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <c:ByteToMegaByteConverter x:Key="ByteToMegaByte"/>
+
+    <Style x:Key="LV_Header" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                    <TextBlock Text="{TemplateBinding Content}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MainLB" TargetType="{x:Type ListView}">
+
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Padding" Value="2,0" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window},
+                                                                                Path=DataContext}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <Grid>
+
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseDown">
+                                            <i:InvokeCommandAction Command="{Binding Tag.ChangeCopyToStateCommand,
+                                                                             RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                                           CommandParameter="{Binding}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+
+                                    <Border x:Name="outerBorder" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="2" 
+                                            SnapsToDevicePixels="true">
+                                        <Grid>
+                                            <Border x:Name="innerBorder" 
+                                                    Background="{TemplateBinding Background}" 
+                                                    BorderThickness="1" 
+                                                    CornerRadius="1" 
+                                                    Padding="{TemplateBinding Padding}" 
+                                                    SnapsToDevicePixels="true" />
+                                            <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="outerBorder" Property="BorderBrush" Value="{DynamicResource GrayLVL3}" />
+                                        <Setter TargetName="innerBorder" Property="Background" Value="{DynamicResource LightLVL0}" />
+                                        <Setter TargetName="innerBorder" Property="BorderBrush" Value="{DynamicResource GrayLVL3}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Foreground" Value="{DynamicResource GrayLVL3}"/>
+        
+        <Setter Property="View">
+            <Setter.Value>
+
+                <GridView>
+
+                    <GridViewColumn Header="Данные"
+                                    Width="50"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:FlashDrive}">
+                                <CheckBox HorizontalAlignment="Center" x:Name="CB"
+                                          Background="{DynamicResource GrayLVL3}"
+                                          IsChecked="{Binding IsCopyToNeed}"/>
+
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding State}" Value="Ready">
+                                        <Setter Property="IsEnabled" TargetName="CB" Value="True"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="NotEnoughSpace">
+                                        <Setter Property="IsEnabled" TargetName="CB" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="Error">
+                                        <Setter Property="IsEnabled" TargetName="CB" Value="False"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Путь"
+                                    Width="50"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:FlashDrive}">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding Path}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Объём памяти"
+                                    Width="100"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:FlashDrive}"> 
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding TotalSize, Converter={StaticResource ByteToMegaByte}}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Свободная память"
+                                    Width="110"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:FlashDrive}">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding AvailableFreeSpace, Converter={StaticResource ByteToMegaByte}}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Состояние"
+                                    Width="70"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:FlashDrive}">
+                                <Border x:Name="Border"
+                                        HorizontalAlignment="Center"
+                                        ToolTip="Готов к записи">
+                                    <md:PackIcon Kind="ContentSave" x:Name="BorderIcon"/>
+                                </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding State}" Value="Ready">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="Done"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="Green"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Готов к записи"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="NotEnoughSpace">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="Warning"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="Yellow"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Недостаточно памяти"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="Error">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="Error"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="Red"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Ошибка"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="DeleteData">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="Delete"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="{DynamicResource GrayLVL3}"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Удаление данных..."/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding State}" Value="Record">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="ContentSave"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="{DynamicResource GrayLVL3}"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Запись данных..."/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                        
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Состояние данных"
+                                    Width="110" 
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:FlashDrive}">
+                                <Border x:Name="Border"
+                                        HorizontalAlignment="Center"
+                                        ToolTip="Готов к записи">
+                                    <md:PackIcon Kind="Done" x:Name="BorderIcon"/>
+                                </Border>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding DataState}" Value="AlreadyExist">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="Done"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="Green"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Файл уже записан на носитель"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding DataState}" Value="NoInputFile">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="Warning"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="Yellow"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Нет входного файла/папки"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding DataState}" Value="NoExist">
+                                        <Setter Property="Kind" TargetName="BorderIcon" Value="Help"/>
+                                        <Setter Property="Foreground" TargetName="BorderIcon" Value="Blue"/>
+                                        <Setter Property="ToolTip" TargetName="Border" Value="Файл ещё не записан"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Прогресс записи"
+                                    Width="285"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:FlashDrive}">
+                                <ProgressBar Minimum="0" Maximum="100" Style="{x:Null}" Height="20" 
+                                             Value="{Binding CurrentPos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <!--<TextBlock HorizontalAlignment="Center"
+                                           Text="{Binding AvailableFreeSpace, Converter={StaticResource ByteToMegaByte}}"/>-->
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                </GridView>
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+
+    <Style x:Key="ErrosLV" TargetType="{x:Type ListView}">
+        
+       
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Padding" Value="2,0" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window},
+                                                                                Path=DataContext}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <Grid>
+                                    <Border x:Name="outerBorder" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="2" 
+                                            SnapsToDevicePixels="true">
+                                        <Grid>
+                                            <Border x:Name="innerBorder" 
+                                                    Background="{TemplateBinding Background}" 
+                                                    BorderThickness="1" 
+                                                    CornerRadius="1" 
+                                                    Padding="{TemplateBinding Padding}" 
+                                                    SnapsToDevicePixels="true" />
+                                            <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="outerBorder" Property="BorderBrush" Value="{DynamicResource GrayLVL3}" />
+                                        <Setter TargetName="innerBorder" Property="Background" Value="{DynamicResource LightLVL0}" />
+                                        <Setter TargetName="innerBorder" Property="BorderBrush" Value="{DynamicResource GrayLVL3}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="Foreground" Value="{DynamicResource GrayLVL3}"/>
+        <Setter Property="View">
+            <Setter.Value>
+                <GridView>
+
+                    <GridViewColumn Header="Путь"
+                                    Width="auto"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:ErrorReport}">
+                                <TextBlock HorizontalAlignment="Left"
+                                           Text="{Binding Path}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Ошибка"
+                                    Width="auto"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="{x:Type m:ErrorReport}">
+                                <TextBlock HorizontalAlignment="Left"
+                                           TextWrapping="WrapWithOverflow"
+                                           Text="{Binding Message}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Стек"
+                                    Width="100"
+                                    HeaderContainerStyle="{StaticResource LV_Header}">
+                        
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button HorizontalAlignment="Right"
+                                        Background="Gray"
+                                        BorderBrush="Gray"
+                                        Content="Открыть"
+                                        Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window},
+                                                                                Path=DataContext.OpenStackTraceCommand}"
+                                        CommandParameter="{Binding}"/>
+                                
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    
+                </GridView>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

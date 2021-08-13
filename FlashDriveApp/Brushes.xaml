@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <SolidColorBrush x:Key="Gor" Color="#f3ca20"/>
+    <SolidColorBrush x:Key="GorWithLowOpacity" Color="#f3ca20" Opacity="0.75"/>
+
+    <SolidColorBrush x:Key="LightLVL0" Color="#FF8A8A93"/>
+
+    <SolidColorBrush x:Key="GrayLVL0" Color="#FF4D4D51"/>
+    <SolidColorBrush x:Key="GrayLVL1" Color="#FF2D2D30"/>
+    <SolidColorBrush x:Key="GrayLVL2" Color="#FF252527"/>
+    <SolidColorBrush x:Key="GrayLVL3" Color="#FF1A1A1B"/>
+    <SolidColorBrush x:Key="GrayLVL4" Color="#FF121213"/>
+    <SolidColorBrush x:Key="GrayLVL4WithLowOpacity" Color="#FF121213" Opacity="0.01"/>
+
+    <SolidColorBrush x:Key="StandartTextColor" Color="#FFCCC5C5"/>
+    <SolidColorBrush x:Key="StandartTextLightColor" Color="#FFE5E5E5"/>
+    <SolidColorBrush x:Key="StandartLightColor" Color="#FFCCC5C5"/>
+    <SolidColorBrush x:Key="StandartLightColor2" Color="#FFF0E7E7"/>
+    <SolidColorBrush x:Key="StandartLightColor3" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="DimColor" Color="#FFCCC5C5"/>
+    <SolidColorBrush x:Key="DimColorWithLowOpacity" Color="#FFCCC5C5" Opacity="0.5"/>
+    <SolidColorBrush x:Key="DimColorWithLowOpacity2" Color="#FFCCC5C5" Opacity="0.1"/>
+
+    <Color x:Key="GrayLVL0_Color">#FF4D4D51</Color>
+    <Color x:Key="GrayLVL1_Color">#FF2D2D30</Color>
+    <Color x:Key="GrayLVL2_Color">#FF252527</Color>
+    <Color x:Key="GrayLVL3_Color">#FF1A1A1B</Color>
+    <Color x:Key="GrayLVL4_Color">#FF121213</Color>
+
+</ResourceDictionary>

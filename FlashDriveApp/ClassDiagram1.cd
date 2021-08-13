@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FlashDriveApp.Extentions.FlashDriveExtentions" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extentions\FlashDriveExtentions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlashDriveApp.Extentions.OnPropertyChangedClass" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAEAAAAAAAAAIAAAAAAAgAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extentions\OnPropertyChangedClass.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FlashDriveApp.Models.FlashDrive" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAYAIAAACARAAAAQAAEABEAABBABACA=</HashCode>
+      <FileName>Models\FlashDrive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlashDriveApp.Services.DialogService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAACAAAAAAA=</HashCode>
+      <FileName>Services\DialogService\DialogService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FlashDriveApp.Services.FlashDriveService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAEBAAAQCAAAAAAAgASAAAgUQgAAAAAAgEAAA=</HashCode>
+      <FileName>Services\FlashDriveService\FlashDriveService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FlashDriveApp.ViewModels.Abstractions.BaseViewModel" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAIAAAAAARAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Base\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlashDriveApp.ViewModels.ErrorsViewModel" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAQgAAAAAAAAAAAAAAQAAAACAAAAAAA=</HashCode>
+      <FileName>ViewModels\ErrorsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlashDriveApp.ViewModels.FlashDriveViewModel" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABICAAAACAAAhAQAAIEAAAAACAAAABQAAgAAAAIAQAA=</HashCode>
+      <FileName>ViewModels\FlashDriveViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FlashDriveApp.Views.ErrorsWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ErrorsWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="FlashDriveApp.Views.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="FlashDriveApp.Services.IDialogService" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\DialogService\IDialogService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="FlashDriveApp.Services.IFlashDriveService" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEBAAAQCAAAAAAAgAAAAAAEAAAAAAAAgAAAA=</HashCode>
+      <FileName>Services\FlashDriveService\IFlashDriveService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="FlashDriveApp.Extentions.DataState" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAQAAAAAAAEAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Extentions\DataState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="FlashDriveApp.Extentions.FlashDriveState" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQEAAAAAAAAAAACAAEAAAAAAAAAABAA=</HashCode>
+      <FileName>Extentions\FlashDriveState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

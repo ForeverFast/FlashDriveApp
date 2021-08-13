@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\ErrorsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\StackTraceWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Brushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ListViewStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\ProgressBarStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\TextStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ErrorsWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\StackTraceWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
